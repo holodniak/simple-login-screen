@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const Button = styled.button`
   width: 60%;
-  height: 13%;
   position: relative;
   background: #8a2be1;
   padding: 3%;
@@ -14,6 +13,7 @@ const Button = styled.button`
   font-size: 16px;
   text-align: center;
   font-family: sans-serif;
+  cursor: pointer;
 `;
 
 export default function Buttons(props) {

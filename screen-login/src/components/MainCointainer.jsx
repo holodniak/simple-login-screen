@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import imagem from "../version_control.svg";
+import Input from "./Input";
+import Button from "./Button";
 
 const Coitainer = styled.div`
   width: 100vw;
@@ -13,6 +15,7 @@ const Coitainer = styled.div`
 `;
 
 const Box = styled.div`
+  display: flex;
   width: 60%;
   height: 60%;
   background: #cecece;
@@ -37,6 +40,33 @@ const Image = styled.img`
   top: 20%;
 `;
 
+const BoxLogin = styled.div`
+  position: relative;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Title = styled.h1`
+  font-size: 30px;
+  text-align: center;
+  margin-top: 14%;
+  font-family: sans-serif;
+  color: #8a2be1;
+`;
+
+const BoxActions = styled.div`
+  height: 68%;
+  margin: 3%;
+  margin-top: 6%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export default function MainContainer() {
   return (
     <Coitainer>
@@ -44,6 +74,14 @@ export default function MainContainer() {
         <BoxImage>
           <Image src={imagem} />
         </BoxImage>
+        <BoxLogin>
+          <Title>PedroTech</Title>
+          <BoxActions>
+            <Input placeholder="E-mail" type="text"></Input>
+            <Input placeholder="Senha" type="password"></Input>
+            <Button text="Login"></Button>
+          </BoxActions>
+        </BoxLogin>
       </Box>
     </Coitainer>
   );

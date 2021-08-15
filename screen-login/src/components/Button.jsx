@@ -14,6 +14,10 @@ const Button = styled.button`
   text-align: center;
   font-family: sans-serif;
   cursor: pointer;
+
+  :hover {
+    background: #300844;
+  }
 `;
 
 export default function Buttons(props) {

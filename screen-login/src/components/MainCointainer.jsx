@@ -67,6 +67,15 @@ const BoxActions = styled.div`
   align-items: center;
 `;
 
+const ForgotPassword = styled.a`
+  cursor: pointer;
+  font-family: sans-serif;
+  color: #300844;
+  :hover {
+    color: #8a2be1;
+  }
+`;
+
 export default function MainContainer() {
   return (
     <Coitainer>
@@ -80,6 +89,7 @@ export default function MainContainer() {
             <Input placeholder="E-mail" type="text"></Input>
             <Input placeholder="Senha" type="password"></Input>
             <Button text="Login"></Button>
+            <ForgotPassword>Esqueci minha senha!</ForgotPassword>
           </BoxActions>
         </BoxLogin>
       </Box>

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import imagem from "../version_control.svg";
 import Input from "./Input";
 import Button from "./Button";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 
 const Coitainer = styled.div`
   width: 100vw;
@@ -29,6 +30,10 @@ const BoxImage = styled.div`
   height: 100%;
   border-radius: 8px 0px 0px 8px;
   background: blueviolet;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Image = styled.img`
@@ -37,7 +42,7 @@ const Image = styled.img`
   position: relative;
   display: block;
   margin: 0 auto;
-  top: 20%;
+  top: 5%;
 `;
 
 const BoxLogin = styled.div`
@@ -65,6 +70,15 @@ const BoxActions = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  opacity: 1;
+  transition: opacity 0.5s linear;
+
+  ${(props) =>
+    !props.isClicked &&
+    css`
+      opacity: 0;
+      pointer-events: none;
+    `}
 `;
 
 const ForgotPassword = styled.a`
@@ -76,18 +90,49 @@ const ForgotPassword = styled.a`
   }
 `;
 
+const Join = styled.button`
+  width: 60%;
+  position: relative;
+  background: #fff;
+  padding: 3%;
+  margin: 4%;
+  border-radius: 8px;
+  border: none;
+  color: #8a2be1;
+  font-size: 16px;
+  text-align: center;
+  font-family: sans-serif;
+  cursor: pointer;
+
+  :hover {
+    background: #300844;
+    color: #fff;
+  }
+`;
+
 export default function MainContainer() {
+  const [isClicked, setIsClicked] = useState(true);
+
+  const toggle = () => {
+    setIsClicked(!isClicked);
+  };
+
   return (
     <Coitainer>
       <Box>
         <BoxImage>
           <Image src={imagem} />
+          <Join onClick={toggle}>
+            {isClicked ? "Cadastre-se agora!" : "Já sou cadastrado!"}
+          </Join>
         </BoxImage>
         <BoxLogin>
           <Title>PedroTech</Title>
-          <BoxActions>
+          <BoxActions isClicked={isClicked}>
             <Input placeholder="E-mail" type="text"></Input>
-            <Input placeholder="Senha" type="password"></Input>
+            <Input placeholder="Senha" type="password">
+              <VisibilityOffIcon style="visibility:hidden"></VisibilityOffIcon>
+            </Input>
             <Button text="Login"></Button>
             <ForgotPassword>Esqueci minha senha!</ForgotPassword>
           </BoxActions>

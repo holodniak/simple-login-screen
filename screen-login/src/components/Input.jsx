@@ -7,11 +7,16 @@ const Input = styled.input`
   position: relative;
   background: #fff;
   padding: 3%;
-  margin: 4%;
   border-radius: 8px;
   border: 1px solid #8a2be1;
 `;
 
 export default function Inputs(props) {
-  return <Input type={props.type} placeholder={props.placeholder}></Input>;
+  return (
+    <Input
+      type={props.type}
+      placeholder={props.placeholder}
+      style={{ margin: props.margin }}
+    ></Input>
+  );
 }

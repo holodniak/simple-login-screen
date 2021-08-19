@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import imagem from "../version_control.svg";
-import Input from "./Input";
-import Button from "./Button";
-import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import FormLogin from "./FormLogin";
+import FormRegistry from "./FormRegistry";
 
 const Coitainer = styled.div`
   width: 100vw;
@@ -63,33 +62,6 @@ const Title = styled.h1`
   color: #8a2be1;
 `;
 
-const BoxActions = styled.div`
-  height: 68%;
-  margin: 3%;
-  margin-top: 6%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  opacity: 1;
-  transition: opacity 0.5s linear;
-
-  ${(props) =>
-    !props.isClicked &&
-    css`
-      opacity: 0;
-      pointer-events: none;
-    `}
-`;
-
-const ForgotPassword = styled.a`
-  cursor: pointer;
-  font-family: sans-serif;
-  color: #300844;
-  :hover {
-    color: #8a2be1;
-  }
-`;
-
 const Join = styled.button`
   width: 60%;
   position: relative;
@@ -128,14 +100,8 @@ export default function MainContainer() {
         </BoxImage>
         <BoxLogin>
           <Title>PedroTech</Title>
-          <BoxActions isClicked={isClicked}>
-            <Input placeholder="E-mail" type="text"></Input>
-            <Input placeholder="Senha" type="password">
-              <VisibilityOffIcon style="visibility:hidden"></VisibilityOffIcon>
-            </Input>
-            <Button text="Login"></Button>
-            <ForgotPassword>Esqueci minha senha!</ForgotPassword>
-          </BoxActions>
+          <FormLogin isClicked={isClicked} />
+          <FormRegistry isClicked={isClicked} />
         </BoxLogin>
       </Box>
     </Coitainer>

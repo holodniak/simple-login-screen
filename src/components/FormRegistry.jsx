@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
-import imagem from "../version_control.svg";
+
 import Input from "./Input";
 import Button from "./Button";
-import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 
 const BoxActions = styled.div`
   height: 68%;

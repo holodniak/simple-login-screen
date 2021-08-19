@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
-import imagem from "../version_control.svg";
 import Input from "./Input";
 import Button from "./Button";
-import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 
 const BoxActions = styled.div`
   height: 68%;
@@ -38,9 +36,7 @@ export default function FormLogin(props) {
   return (
     <BoxActions isClicked={props.isClicked}>
       <Input placeholder="E-mail" type="text" margin="4%"></Input>
-      <Input placeholder="Senha" type="password" margin="4%">
-        <VisibilityOffIcon style="visibility:hidden"></VisibilityOffIcon>
-      </Input>
+      <Input placeholder="Senha" type="password" margin="4%"></Input>
       <Button text="Login"></Button>
       <ForgotPassword>Esqueci minha senha!</ForgotPassword>
     </BoxActions>

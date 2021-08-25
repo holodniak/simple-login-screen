@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import Input from "./Input";
 import Button from "./Button";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 
 const BoxActions = styled.div`
   height: 68%;
@@ -33,10 +35,42 @@ const ForgotPassword = styled.a`
 `;
 
 export default function FormLogin(props) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const visible = () => {
+    setIsVisible(!isVisible);
+  };
   return (
     <BoxActions isClicked={props.isClicked}>
       <Input placeholder="E-mail" type="text" margin="4%"></Input>
-      <Input placeholder="Senha" type="password" margin="4%"></Input>
+      <Input
+        placeholder="Senha"
+        type={isVisible ? "text" : "password"}
+        margin="4%"
+        icon={
+          isVisible ? (
+            <VisibilityIcon
+              style={{
+                position: "absolute",
+                right: "13%",
+                top: "34%",
+                cursor: "pointer",
+              }}
+              onClick={visible}
+            />
+          ) : (
+            <VisibilityOffIcon
+              style={{
+                position: "absolute",
+                right: "13%",
+                top: "34%",
+                cursor: "pointer",
+              }}
+              onClick={visible}
+            />
+          )
+        }
+      ></Input>
       <Button text="Login"></Button>
       <ForgotPassword>Esqueci minha senha!</ForgotPassword>
     </BoxActions>

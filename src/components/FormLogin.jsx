@@ -8,7 +8,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 const BoxActions = styled.div`
   height: 68%;
   margin: 3%;
-  margin-top: 6%;
+  margin-top: 3%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,19 +42,26 @@ export default function FormLogin(props) {
   };
   return (
     <BoxActions isClicked={props.isClicked}>
-      <Input placeholder="E-mail" type="text" margin="4%"></Input>
+      <Input
+        placeholder="E-mail"
+        type="text"
+        margin="4%"
+        marginLeft="4%"
+      ></Input>
       <Input
         placeholder="Senha"
         type={isVisible ? "text" : "password"}
         margin="4%"
+        marginLeft="4%"
         icon={
           isVisible ? (
             <VisibilityIcon
               style={{
                 position: "absolute",
-                right: "13%",
+                right: "7%",
                 top: "34%",
                 cursor: "pointer",
+                color: "#8a2be1",
               }}
               onClick={visible}
             />
@@ -62,9 +69,10 @@ export default function FormLogin(props) {
             <VisibilityOffIcon
               style={{
                 position: "absolute",
-                right: "13%",
+                right: "7%",
                 top: "34%",
                 cursor: "pointer",
+                color: "#8a2be1",
               }}
               onClick={visible}
             />

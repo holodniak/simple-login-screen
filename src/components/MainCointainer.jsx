@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import imagem from "../version_control.svg";
+// import imagem from "../developer.gif";
 import FormLogin from "./FormLogin";
 import FormRegistry from "./FormRegistry";
+import Lottie from "react-lottie";
+import animationData from "../lotties/developer.json";
 
 const Coitainer = styled.div`
   width: 100vw;
@@ -35,9 +37,9 @@ const BoxImage = styled.div`
   align-items: center;
 `;
 
-const Image = styled.img`
-  width: 60%;
-  height: 60%;
+const Image = styled.div`
+  width: 70%;
+  height: 70%;
   position: relative;
   display: block;
   margin: 0 auto;
@@ -55,10 +57,9 @@ const BoxLogin = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 30px;
+  font-size: 33px;
   text-align: center;
   margin-top: 14%;
-  font-family: sans-serif;
   color: #8a2be1;
 `;
 
@@ -89,11 +90,19 @@ export default function MainContainer() {
     setIsClicked(!isClicked);
   };
 
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+  };
+
   return (
     <Coitainer>
       <Box>
         <BoxImage>
-          <Image src={imagem} />
+          <Image>
+            <Lottie options={defaultOptions} />
+          </Image>
           <Join onClick={toggle}>
             {isClicked ? "Cadastre-se agora!" : "Já sou cadastrado!"}
           </Join>

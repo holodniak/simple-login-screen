@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import styled, { css } from "styled-components";
 
 const Input = styled.input`
   width: 84%;
@@ -14,6 +14,11 @@ const Input = styled.input`
   -webkit-autofill:active {
     border: none;
   }
+  ${(props) =>
+    props.isValid &&
+    css`
+      border: 1px solid #02ff39;
+    `}
 `;
 
 const GroupInput = styled.div`
@@ -26,9 +31,11 @@ const GroupInput = styled.div`
 `;
 
 export default function Inputs(props) {
+  const [isValid, setIsValid] = useState(true);
   return (
     <GroupInput>
       <Input
+        onChange={isValid}
         type={props.type}
         placeholder={props.placeholder}
         style={{ margin: props.margin, marginLeft: props.marginLeft }}

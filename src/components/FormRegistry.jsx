@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 
 import Input from "./Input";
 import Button from "./Button";
@@ -7,7 +9,6 @@ import Button from "./Button";
 const BoxActions = styled.div`
   height: 68%;
   margin: 3%;
-  margin-top: 3%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,12 +26,16 @@ const BoxActions = styled.div`
 `;
 
 export default function FormRegistry(props) {
-  // const [passwords, setValue] = useState({
-  //   password: "",
-  //   confirmPassword: "",
-  //   colorPassword: "red !important",
-  //   colorConfirmPassword: "red !important",
-  // });
+  const [passwords, setValue] = useState({
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  const visible = () => {
+    setIsVisible(!isVisible);
+  };
 
   return (
     <BoxActions isClicked={props.isClicked}>
@@ -48,29 +53,79 @@ export default function FormRegistry(props) {
       ></Input>
       <Input
         placeholder="Senha"
-        type="password"
+        type={isVisible ? "text" : "password"}
         margin="1%"
         marginLeft="4%"
-        // value={passwords.password}
-        //borderColor={passwords.colorPassword}
-        // onChange={(e) => {
-        //   setValue({ password: e.target.value });
-        // }}
+        isValid={
+          passwords.password === passwords.confirmPassword &&
+          passwords.password !== ""
+        }
+        onChange={(e) => {
+          setValue({ ...passwords, password: e.target.value });
+        }}
+        icon={
+          isVisible ? (
+            <VisibilityIcon
+              style={{
+                position: "absolute",
+                right: "7%",
+                top: "28%",
+                cursor: "pointer",
+                color: "#8a2be1",
+              }}
+              onClick={visible}
+            />
+          ) : (
+            <VisibilityOffIcon
+              style={{
+                position: "absolute",
+                right: "7%",
+                top: "28%",
+                cursor: "pointer",
+                color: "#8a2be1",
+              }}
+              onClick={visible}
+            />
+          )
+        }
       ></Input>
       <Input
         placeholder="Confirmar Senha"
-        type="password"
+        type={isVisible ? "text" : "password"}
         margin="1%"
         marginLeft="4%"
-        // value={passwords.confirmPassword}
-        // borderColor={passwords.colorConfirmPassword}
-        // onChange={(e) => {
-        //   setValue({ confirmPassword: e.target.value });
-        //   if (passwords.confirmPassword === passwords.password) {
-        //     setValue({ colorConfirmPassword: "green", colorPassword: "green" });
-        //   } else
-        //     setValue({ colorConfirmPassword: "red", colorPassword: "red" });
-        // }}
+        isValid={
+          passwords.password === passwords.confirmPassword &&
+          passwords.password !== ""
+        }
+        onChange={(e) => {
+          setValue({ ...passwords, confirmPassword: e.target.value });
+        }}
+        icon={
+          isVisible ? (
+            <VisibilityIcon
+              style={{
+                position: "absolute",
+                right: "7%",
+                top: "28%",
+                cursor: "pointer",
+                color: "#8a2be1",
+              }}
+              onClick={visible}
+            />
+          ) : (
+            <VisibilityOffIcon
+              style={{
+                position: "absolute",
+                right: "7%",
+                top: "28%",
+                cursor: "pointer",
+                color: "#8a2be1",
+              }}
+              onClick={visible}
+            />
+          )
+        }
       ></Input>
       <Button text="Cadastrar"></Button>
     </BoxActions>

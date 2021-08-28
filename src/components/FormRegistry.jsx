@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Input from "./Input";
 import Button from "./Button";
@@ -27,6 +29,8 @@ const BoxActions = styled.div`
 
 export default function FormRegistry(props) {
   const [passwords, setValue] = useState({
+    email: "",
+    phone: "",
     password: "",
     confirmPassword: "",
   });
@@ -37,6 +41,38 @@ export default function FormRegistry(props) {
     setIsVisible(!isVisible);
   };
 
+  const notify = () => {
+    const notValid = Object.entries({ ...passwords }).map((item) => {
+      let notValid = [];
+      if (item[1] === "") notValid.push(item[1]);
+      return notValid;
+    });
+
+    console.log(notValid);
+
+    if (notValid.length === 0) {
+      toast.success("Login Cadastrado com Sucesso!", {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.error("Preencha todas as informações!", {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
   return (
     <BoxActions isClicked={props.isClicked}>
       <Input
@@ -44,12 +80,18 @@ export default function FormRegistry(props) {
         type="text"
         margin="1%"
         marginLeft="4%"
+        onChange={(e) => {
+          setValue({ ...passwords, email: e.target.value });
+        }}
       ></Input>
       <Input
         placeholder="Telefone"
         type="text"
         margin="1%"
         marginLeft="4%"
+        onChange={(e) => {
+          setValue({ ...passwords, phone: e.target.value });
+        }}
       ></Input>
       <Input
         placeholder="Senha"
@@ -127,7 +169,18 @@ export default function FormRegistry(props) {
           )
         }
       ></Input>
-      <Button text="Cadastrar"></Button>
+      <Button onClick={notify} text="Cadastrar"></Button>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+      />
     </BoxActions>
   );
 }

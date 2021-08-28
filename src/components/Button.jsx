@@ -21,5 +21,5 @@ const Button = styled.button`
 `;
 
 export default function Buttons(props) {
-  return <Button>{props.text}</Button>;
+  return <Button {...props}>{props.text}</Button>;
 }

@@ -42,15 +42,13 @@ export default function FormRegistry(props) {
   };
 
   const notify = () => {
-    const notValid = Object.entries({ ...passwords }).map((item) => {
-      let notValid = [];
-      if (item[1] === "") notValid.push(item[1]);
-      return notValid;
-    });
+    let inputs = { ...passwords };
+    let isValid = passwords.password === passwords.confirmPassword;
+    const notValid = Object.keys(inputs)
+      .map((key) => inputs[key])
+      .filter((input) => input === "");
 
-    console.log(notValid);
-
-    if (notValid.length === 0) {
+    if (notValid.length === 0 && isValid) {
       toast.success("Login Cadastrado com Sucesso!", {
         position: "bottom-right",
         autoClose: 4000,

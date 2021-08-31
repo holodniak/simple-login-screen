@@ -4,6 +4,11 @@ import Input from "./Input";
 import Button from "./Button";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import Fade from "@material-ui/core/Fade";
+import ModalPassword from "./ModalPassword";
 
 const BoxActions = styled.div`
   height: 68%;
@@ -34,8 +39,32 @@ const ForgotPassword = styled.a`
   }
 `;
 
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: "2px solid #000",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
+
 export default function FormLogin(props) {
+  const classes = useStyles();
   const [isVisible, setIsVisible] = useState(false);
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const visible = () => {
     setIsVisible(!isVisible);
@@ -80,7 +109,23 @@ export default function FormLogin(props) {
         }
       ></Input>
       <Button text="Login"></Button>
-      <ForgotPassword>Esqueci minha senha!</ForgotPassword>
+      <ForgotPassword onClick={handleOpen}>Esqueci minha senha!</ForgotPassword>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <ModalPassword />
+        </Fade>
+      </Modal>
     </BoxActions>
   );
 }

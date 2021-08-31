@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Input from "./Input";
 import Button from "./Button";
+import InputRegistry from "./InputRegistry";
 
 const BoxActions = styled.div`
   height: 68%;
@@ -91,7 +92,7 @@ export default function FormRegistry(props) {
           setValue({ ...passwords, phone: e.target.value });
         }}
       ></Input>
-      <Input
+      <InputRegistry
         placeholder="Senha"
         type={isVisible ? "text" : "password"}
         margin="1%"
@@ -128,8 +129,8 @@ export default function FormRegistry(props) {
             />
           )
         }
-      ></Input>
-      <Input
+      ></InputRegistry>
+      <InputRegistry
         placeholder="Confirmar Senha"
         type={isVisible ? "text" : "password"}
         margin="1%"
@@ -166,7 +167,7 @@ export default function FormRegistry(props) {
             />
           )
         }
-      ></Input>
+      ></InputRegistry>
       <Button onClick={notify} text="Cadastrar"></Button>
       <ToastContainer
         position="bottom-right"

@@ -14,6 +14,12 @@ const Coitainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    height: 100%;
+    margin: 8rem auto;
+  }
 `;
 
 const Box = styled.div`
@@ -27,7 +33,8 @@ const Box = styled.div`
     width: 91%;
     height: 70%;
     flex-direction: column;
-    overflow: auto;
+    overflow: hidden;
+    overflow-y: scroll;
   }
 `;
 
@@ -45,7 +52,7 @@ const BoxImage = styled.div`
 
   @media (max-width: 480px) {
     display: flex;
-    width: 100%;
+    width: 101%;
     height: 100%;
     border-radius: 8px 8px 0px 0px;
   }

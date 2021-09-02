@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Input from "./Input";
+import { ToastContainer, toast } from "react-toastify";
 
 const ModalCard = styled.div`
   display: block;
@@ -17,8 +18,8 @@ const HeaderCard = styled.div`
   background-color: #8a2be1;
   font-size: 18px;
   text-align: center;
-  font-family: fontWeb;
-  font-weight: bold;
+  font-weight: 600;
+  border-radius: 4px 4px 0 0;
 `;
 
 const SendEmail = styled.div`
@@ -26,13 +27,15 @@ const SendEmail = styled.div`
   display: flex;
   flex-direction: column;
   bottom: 0;
+  margin-top: 10px;
 `;
 
-const ContentCard = styled.div`
+const TextCard = styled.div`
   height: 30%;
   text-align: center;
   font-size: 19px;
   margin-top: 2%;
+  font-family: sans-serif;
 `;
 
 const Button = styled.button`
@@ -53,23 +56,70 @@ const Button = styled.button`
   }
 `;
 
-export default function ModalPassword(props) {
+const ContentCard = styled.div`
+  padding: 8%;
+`;
+
+export default function ModalPassword() {
+  const [email, setValue] = useState({
+    email: "",
+  });
+
+  const notify = () => {
+    if (email.email !== "") {
+      toast.success("Email enviado com Sucesso!", {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.error("Digite um email para enviar!", {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
   return (
     <ModalCard>
       <HeaderCard>Esqueceu sua senha?</HeaderCard>
       <ContentCard>
-        Digite o seu e-mail cadastrado para receber um o link de redefinição de
-        senha
+        <TextCard>
+          Digite o seu e-mail cadastrado para receber um o link de redefinição
+          de senha
+        </TextCard>
+        <SendEmail>
+          <Input
+            placeholder="Digite seu Email"
+            type="text"
+            margin="4%"
+            marginLeft="4%"
+            onChange={(e) => {
+              setValue({ ...email, email: e.target.value });
+            }}
+          ></Input>
+          <Button onClick={notify}>Enviar Email</Button>
+        </SendEmail>
       </ContentCard>
-      <SendEmail>
-        <Input
-          placeholder="Digite seu Email"
-          type="text"
-          margin="4%"
-          marginLeft="4%"
-        ></Input>
-        <Button>Enviar Email</Button>
-      </SendEmail>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+      />
     </ModalCard>
   );
 }

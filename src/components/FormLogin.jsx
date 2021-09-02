@@ -9,6 +9,7 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import ModalPassword from "./ModalPassword";
+import { ToastContainer, toast } from "react-toastify";
 
 const BoxActions = styled.div`
   height: 68%;
@@ -63,6 +64,36 @@ export default function FormLogin(props) {
   const [isVisible, setIsVisible] = useState(false);
   const [open, setOpen] = React.useState(false);
 
+  const [credentials, setValue] = useState({
+    email: "",
+    password: "",
+  });
+
+  const notify = () => {
+    let inputs = { ...credentials };
+    if (inputs.email !== "" && inputs.password !== "") {
+      toast.success("Login realizado com Sucesso!", {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.error("Digite as informações de acesso!", {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -81,12 +112,18 @@ export default function FormLogin(props) {
         type="text"
         margin="4%"
         marginLeft="4%"
+        onChange={(e) => {
+          setValue({ ...credentials, email: e.target.value });
+        }}
       ></Input>
       <Input
         placeholder="Senha"
         type={isVisible ? "text" : "password"}
         margin="4%"
         marginLeft="4%"
+        onChange={(e) => {
+          setValue({ ...credentials, password: e.target.value });
+        }}
         icon={
           isVisible ? (
             <VisibilityIcon
@@ -113,7 +150,7 @@ export default function FormLogin(props) {
           )
         }
       ></Input>
-      <Button text="Login"></Button>
+      <Button onClick={notify} text="Login"></Button>
       <ForgotPassword onClick={handleOpen}>Esqueci minha senha!</ForgotPassword>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -131,6 +168,17 @@ export default function FormLogin(props) {
           <ModalPassword />
         </Fade>
       </Modal>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+      />
     </BoxActions>
   );
 }

@@ -28,6 +28,11 @@ const BoxActions = styled.div`
       opacity: 0;
       pointer-events: none;
     `}
+
+  @media (max-width: 480px) {
+    width: 100%;
+    margin: 0px;
+  }
 `;
 
 const ForgotPassword = styled.a`

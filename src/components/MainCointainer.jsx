@@ -22,6 +22,13 @@ const Box = styled.div`
   height: 60%;
   background: #cecece;
   border-radius: 8px;
+
+  @media (max-width: 480px) {
+    width: 91%;
+    height: 70%;
+    flex-direction: column;
+    overflow: auto;
+  }
 `;
 
 const BoxImage = styled.div`
@@ -35,6 +42,13 @@ const BoxImage = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 480px) {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px 8px 0px 0px;
+  }
 `;
 
 const Image = styled.div`
@@ -54,6 +68,11 @@ const BoxLogin = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const Title = styled.h1`

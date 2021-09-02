@@ -9,6 +9,11 @@ const ModalCard = styled.div`
   height: 300px;
   background-color: lightgray;
   border-radius: 5px;
+
+  @media (max-width: 480px) {
+    width: 90%;
+    height: 35%;
+  }
 `;
 
 const HeaderCard = styled.div`

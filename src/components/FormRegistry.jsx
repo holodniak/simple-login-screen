@@ -26,6 +26,10 @@ const BoxActions = styled.div`
       opacity: 0;
       pointer-events: none;
     `}
+
+  @media (max-width: 480px) {
+    width: 94%;
+  }
 `;
 
 export default function FormRegistry(props) {

@@ -28,6 +28,10 @@ const GroupInput = styled.div`
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
+
+  @media (max-width: 480px) {
+    width: 100%;
+  }
 `;
 
 export default function Inputs(props) {
